@@ -20,11 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"快截图";
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.imageView];
-    
-//    PHFetchResult *fetchResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-    
-//    NSLog(@"%@",fetchResult);
     
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
     options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
@@ -44,31 +42,6 @@
                              self.imageView.image = result;
                              
                          }];
-
-    
-//    for (NSInteger i = 0; i < fetchResult.count; i++) {
-//            
-//        //获取一个相册（PHAssetCollection）
-//            
-//        PHCollection *collection = fetchResult[i];
-//            
-//        if ([collection isKindOfClass:[PHAssetCollection class]]) {
-//                
-//            PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
-//                
-//            //从每一个智能相册中获取到的 PHFetchResult 中包含的才是真正的资源（PHAsset）
-//                
-//            PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
-//            NSLog(@"1111%@",fetchResult);
-//                
-//        }else {
-//                    
-//            NSAssert(NO,@"Fetch collection not PHCollection: %@",collection);
-//                    
-//            
-//                
-//        }
-//    }
     
     // Do any additional setup after loading the view, typically from a nib.
 }

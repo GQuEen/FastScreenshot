@@ -22,18 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
     self.preferredContentSize = CGSizeMake(375, 110);
     
     _screenshotImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 10, 75, 90)];
-    _screenshotImageView.backgroundColor = [UIColor greenColor];
     _screenshotImageView.contentMode = UIViewContentModeScaleAspectFill;
     _screenshotImageView.layer.cornerRadius = 5;
     _screenshotImageView.layer.masksToBounds = YES;
@@ -62,29 +53,37 @@
     [self setupScroll];
     [self setupMoreButton];
     [self setupShareButton];
+    
+    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    
 }
 
 - (void)setupScroll {
-    _shareScorllView = [[UIScrollView alloc]initWithFrame:CGRectMake(105, 30, 375-75-30-41-15, 51)];
+    _shareScorllView = [[UIScrollView alloc]initWithFrame:CGRectMake(105, 30, 375-75-30-41-16, 51)];
     _shareScorllView.showsVerticalScrollIndicator = NO;
     _shareScorllView.showsHorizontalScrollIndicator = NO;
     _shareScorllView.contentSize = CGSizeMake(self.shareScorllView.frame.size.width*2, self.shareScorllView.frame.size.height);
     _shareScorllView.pagingEnabled = YES;
-    //_shareScorllView.backgroundColor = [UIColor greenColor];
     [self.view addSubview:self.shareScorllView];
 }
 
 - (void)setupMoreButton {
     _moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _moreButton.frame = CGRectMake(CGRectGetMaxX(self.shareScorllView.frame), 0, 26, 26);
-    _moreButton.center = CGPointMake(CGRectGetMidX(self.moreButton.frame), self.view.frame.size.height/2);
+    _moreButton.frame = CGRectMake(CGRectGetMaxX(self.shareScorllView.frame), 42.5, 26, 26);
     [_moreButton setImage:[UIImage imageNamed:@"wg_next"] forState:UIControlStateNormal];
+    [_moreButton addTarget:self action:@selector(clickMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
+    _moreButton.selected = NO;
     [self.view addSubview:self.moreButton];
 }
 
 - (void)setupShareButton {
     
-    NSArray *imageDateArray = @[@"share_weibo",@"share_wechat",@"share_qq",@"share_moments"];
+    NSArray *imageDateArray = @[@"wg_weibo",@"wg_wechat",@"wg_qq",@"wg_moments"];
     for (int i = 0; i < imageDateArray.count; i ++) {
         UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         shareBtn.tag = i;
@@ -95,9 +94,34 @@
     }
 }
 
-- (void)clickShareBtn:(UIButton *)sender {
-    
+- (void)clickMoreBtn:(UIButton *)sender {
+    __weak typeof(self) weakSelf = self;
+    if (sender.selected) {
+        sender.selected = !sender.selected;
+        [sender setImage:[UIImage imageNamed:@"wg_next"] forState:UIControlStateNormal];
+        [UIView animateWithDuration:0.2 animations:^{
+            weakSelf.shareScorllView.contentOffset = CGPointMake(0, 0);
+        } completion:nil];
+    }else {
+        sender.selected = !sender.selected;
+        [sender setImage:[UIImage imageNamed:@"wg_pre"] forState:UIControlStateNormal];
+        [UIView animateWithDuration:0.2 animations:^{
+            weakSelf.shareScorllView.contentOffset = CGPointMake(self.shareScorllView.frame.size.width, 0);
+        } completion:nil];
+    }
+}
 
+- (void)clickShareBtn:(UIButton *)sender {
+    //0:微博 1:微信 2:qq 3:朋友圈
+    if (sender.tag == 0) {
+        
+    }else if (sender.tag == 1) {
+    
+    }else if (sender.tag == 2) {
+    
+    }else if (sender.tag == 3) {
+        
+    }
 }
 
 - (UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets {
