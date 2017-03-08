@@ -99,15 +99,27 @@
     if (sender.selected) {
         sender.selected = !sender.selected;
         [sender setImage:[UIImage imageNamed:@"wg_next"] forState:UIControlStateNormal];
+        
         [UIView animateWithDuration:0.2 animations:^{
+            weakSelf.shareScorllView.alpha = 0.5;
+        } completion:^(BOOL finished) {
             weakSelf.shareScorllView.contentOffset = CGPointMake(0, 0);
-        } completion:nil];
+            [UIView animateWithDuration:0.2 animations:^{
+                weakSelf.shareScorllView.alpha = 1;
+            } completion:nil];
+        }];
     }else {
         sender.selected = !sender.selected;
         [sender setImage:[UIImage imageNamed:@"wg_pre"] forState:UIControlStateNormal];
+        
         [UIView animateWithDuration:0.2 animations:^{
+            weakSelf.shareScorllView.alpha = 0.5;
+        } completion:^(BOOL finished) {
             weakSelf.shareScorllView.contentOffset = CGPointMake(self.shareScorllView.frame.size.width, 0);
-        } completion:nil];
+            [UIView animateWithDuration:0.2 animations:^{
+                weakSelf.shareScorllView.alpha = 1;
+            } completion:nil];
+        }];
     }
 }
 
