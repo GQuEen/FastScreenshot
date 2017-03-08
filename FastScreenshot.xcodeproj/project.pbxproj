@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C165BC81E6FFFC50067C3A0 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C165BC71E6FFFC50067C3A0 /* Media.xcassets */; };
 		9C4DD3E21E6D838E00FD4B1D /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4DD3C91E6D79E200FD4B1D /* NotificationCenter.framework */; };
 		9C4DD3E61E6D838E00FD4B1D /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4DD3E51E6D838E00FD4B1D /* TodayViewController.m */; };
 		9C4DD3ED1E6D838E00FD4B1D /* FastScreenshotWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9C4DD3E11E6D838E00FD4B1D /* FastScreenshotWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -60,6 +61,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9C165BC71E6FFFC50067C3A0 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		9C4DD3C91E6D79E200FD4B1D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		9C4DD3E11E6D838E00FD4B1D /* FastScreenshotWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FastScreenshotWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4DD3E41E6D838E00FD4B1D /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				9C4DD3E41E6D838E00FD4B1D /* TodayViewController.h */,
 				9C4DD3E51E6D838E00FD4B1D /* TodayViewController.m */,
 				9C4DD3EA1E6D838E00FD4B1D /* Info.plist */,
+				9C165BC71E6FFFC50067C3A0 /* Media.xcassets */,
 			);
 			path = FastScreenshotWidget;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C165BC81E6FFFC50067C3A0 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
