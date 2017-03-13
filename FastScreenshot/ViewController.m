@@ -7,11 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "AboutViewController.h"
 #import <Photos/Photos.h>
 
 @interface ViewController ()
 
 @property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UIBarButtonItem *aboutBarButtonItem;
 
 @end
 
@@ -23,6 +25,7 @@
     self.title = @"快截图";
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.imageView];
+    self.navigationItem.rightBarButtonItem = self.aboutBarButtonItem;
     
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
     options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
@@ -54,6 +57,22 @@
         _imageView.layer.masksToBounds = YES;
     }
     return _imageView;
+}
+//创建导航栏右按钮（关于）
+- (UIBarButtonItem *)aboutBarButtonItem {
+    if (!_aboutBarButtonItem) {
+        UIButton *aboutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        aboutBtn.frame = CGRectMake(0, 0, 20, 20);
+        [aboutBtn setImage:[UIImage imageNamed:@"nav_about"] forState:UIControlStateNormal];
+        [aboutBtn addTarget:self action:@selector(clickRightBarButtonItem:) forControlEvents:UIControlEventTouchUpInside];
+        _aboutBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:aboutBtn];
+    }
+    return _aboutBarButtonItem;
+}
+//点击关于按钮跳转页面
+- (void)clickRightBarButtonItem:(UIButton *)sender {
+    AboutViewController *avc = [[AboutViewController alloc]init];
+    [self.navigationController pushViewController:avc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
