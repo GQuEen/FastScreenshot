@@ -19,8 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+//    _window = [[UIWindow alloc]initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT)];
+    
     ViewController *vc = [[ViewController alloc]init];
-//    AboutViewController *abvc = [[AboutViewController alloc]init];
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
     _window.rootViewController = nav;

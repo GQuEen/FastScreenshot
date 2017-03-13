@@ -22,8 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"快截图";
+    self.title = @"测试";
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = NO;
     [self.view addSubview:self.imageView];
     self.navigationItem.rightBarButtonItem = self.aboutBarButtonItem;
     
@@ -34,7 +35,7 @@
     NSLog(@"%@",assetsFetchResults);
     
     PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
-    PHAsset *asset = assetsFetchResults[0];
+    PHAsset *asset = assetsFetchResults[2];
     [imageManager requestImageForAsset:asset
                             targetSize:PHImageManagerMaximumSize
                            contentMode:PHImageContentModeAspectFill
@@ -46,6 +47,9 @@
                              
                          }];
     
+    UIImageView *im = [[UIImageView alloc]initWithFrame:CGRectMake(100, 200, 100, 100)];
+    im.backgroundColor = [UIColor redColor];
+    [self.view addSubview:im];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

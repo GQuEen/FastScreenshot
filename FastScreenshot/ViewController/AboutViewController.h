@@ -8,6 +8,6 @@
 
 #import "ViewController.h"
 
-@interface AboutViewController : ViewController
+@interface AboutViewController : UIViewController
 
 @end
