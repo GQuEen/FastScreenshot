@@ -16,4 +16,16 @@
 #define MAIN_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define MAIN_SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
+
+#define YM_SHARE_APP_KEY (@"58bee1b1cae7e72fbf0006d7")
+
+#define YM_QQ_APP_ID (@"1106033696")
+#define YM_QQ_APP_KEY (@"r4Bu0dVMZAK19n2g")
+
+#define YM_WEIBO_APP_KEY (@"1157018695")
+#define YM_WEIBO_APP_SECRET (@"e82e523022f5628a1550abbfe6a6c069")
+
+#define YM_WEIXIN_APP_ID (@"wxae90db8a0e700e46")
+#define YM_WEIXIN_APP_SECRET (@"577aba9db67f278786f2450ab6538392")
+
 #endif /* PrefixHeader_pch */
