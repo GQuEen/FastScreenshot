@@ -10,11 +10,6 @@
 #import "ViewController.h"
 #import "AboutViewController.h"
 
-#import "UMSocialQQHandler.h"
-#import "UMSocialSinaHandler.h"
-#import "UMSocialWechatHandler.h"
-#import <UMSocialCore/UMSocialCore.h>
-
 @interface AppDelegate ()
 
 @end
@@ -59,7 +54,23 @@
     /* 设置新浪的appKey和appSecret */
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:YM_WEIBO_APP_KEY  appSecret:YM_WEIBO_APP_SECRET redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
     
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     
+    if ([[url absoluteString] hasPrefix:@"widget"]) {
+        if ([[url host] isEqualToString:@"weibo"]) {
+            NSLog(@"点击了 widget中的weibo");
+        }else if ([[url host] isEqualToString:@"weixin"]) {
+            NSLog(@"点击了 widget中的weixin");
+        }else if ([[url host] isEqualToString:@"QQ"]) {
+            NSLog(@"点击了 widget中的QQ");
+        }else if ([[url host] isEqualToString:@"moment"]) {
+            NSLog(@"点击了 widget中的朋友圈");
+        }
+    }
+    
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

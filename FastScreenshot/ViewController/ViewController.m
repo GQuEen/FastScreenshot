@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "AboutViewController.h"
 #import <Photos/Photos.h>
+#import "GGShareMenuView.h"
+
 
 @interface ViewController ()
 
@@ -47,10 +49,42 @@
                              
                          }];
     
-    UIImageView *im = [[UIImageView alloc]initWithFrame:CGRectMake(100, 200, 100, 100)];
-    im.backgroundColor = [UIColor redColor];
-    [self.view addSubview:im];
+    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    testBtn.frame = CGRectMake(100, 300, 100, 30);
+    [testBtn setBackgroundColor:[UIColor redColor]];
+    [testBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:testBtn];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)clickBtn:(UIButton *)sender {
+    
+//    [UMSocialShareUIConfig shareInstance].shareTitleViewConfig.isShow = NO;
+//    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageMaxItemIconWidth = 53;
+//    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageMaxItemIconHeight = 53;
+//    
+//    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageMaxRowCountForLandscapeAndBottom = 2;
+//    
+//    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageMaxColumnCountForLandscapeAndBottom = 3;
+//    
+//    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewBackgroundColor = [UIColor whiteColor];
+//    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageBGColor = [UIColor whiteColor];
+//    
+//    [UMSocialShareUIConfig shareInstance].shareCancelControlConfig.shareCancelControlBackgroundColor = [UIColor whiteColor];
+//    [UMSocialShareUIConfig shareInstance].shareCancelControlConfig.shareCancelControlText = @"取消";
+    
+//    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+//        // 根据获取的platformType确定所选平台进行下一步操作
+//        NSLog(@"%@",userInfo);
+//        
+//    }];
+    NSLog(@"点击");
+    GGShareMenuView *shareMenuView = [[GGShareMenuView alloc]initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT)];
+    
+    [shareMenuView showShareMenuViewInWindowWithPlatformSelectionBlock:^(GGSocialPlatformType platformType) {
+        NSLog(@"wqdqw");
+    }];
+    
 }
 
 - (UIImageView *)imageView {

@@ -12,6 +12,12 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
+//导入友盟分享SDK
+#import "UMSocialQQHandler.h"
+#import "UMSocialSinaHandler.h"
+#import "UMSocialWechatHandler.h"
+#import <UMSocialCore/UMSocialCore.h>
+#import <UShareUI/UShareUI.h>
 
 #define MAIN_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define MAIN_SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)

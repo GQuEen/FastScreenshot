@@ -43,7 +43,7 @@
 		9CA6272C1E6522F60084ED1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CA6272A1E6522F60084ED1D /* LaunchScreen.storyboard */; };
 		9CA627371E6522F60084ED1D /* FastScreenshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA627361E6522F60084ED1D /* FastScreenshotTests.m */; };
 		9CA627421E6522F60084ED1D /* FastScreenshotUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA627411E6522F60084ED1D /* FastScreenshotUITests.m */; };
-		9CA627501E6BEE4E0084ED1D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA6274F1E6BEE4E0084ED1D /* AssetsLibrary.framework */; };
+		9CB190AF1E78642100AD1C2E /* GGShareMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB190AE1E78642100AD1C2E /* GGShareMenuView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,7 +152,8 @@
 		9CA6273D1E6522F60084ED1D /* FastScreenshotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FastScreenshotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA627411E6522F60084ED1D /* FastScreenshotUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastScreenshotUITests.m; sourceTree = "<group>"; };
 		9CA627431E6522F60084ED1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9CA6274F1E6BEE4E0084ED1D /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		9CB190AD1E78642100AD1C2E /* GGShareMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGShareMenuView.h; sourceTree = "<group>"; };
+		9CB190AE1E78642100AD1C2E /* GGShareMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGShareMenuView.m; sourceTree = "<group>"; };
 		9CE83B8E1E769E4000AECB3A /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,7 +182,6 @@
 				9C165C001E7177EB0067C3A0 /* UShareUI.framework in Frameworks */,
 				9C165BF11E7177EB0067C3A0 /* libSocialQQ.a in Frameworks */,
 				9C165BF21E7177EB0067C3A0 /* TencentOpenAPI.framework in Frameworks */,
-				9CA627501E6BEE4E0084ED1D /* AssetsLibrary.framework in Frameworks */,
 				9C165BFB1E7177EB0067C3A0 /* libUMSocialLog.a in Frameworks */,
 				9C165BF71E7177EB0067C3A0 /* libSocialWeChat.a in Frameworks */,
 				9C165BFC1E7177EB0067C3A0 /* UMSocialCore.framework in Frameworks */,
@@ -343,7 +343,6 @@
 		9CA627101E6522F60084ED1D = {
 			isa = PBXGroup;
 			children = (
-				9CA6274F1E6BEE4E0084ED1D /* AssetsLibrary.framework */,
 				9CA6271B1E6522F60084ED1D /* FastScreenshot */,
 				9CA627351E6522F60084ED1D /* FastScreenshotTests */,
 				9CA627401E6522F60084ED1D /* FastScreenshotUITests */,
@@ -374,8 +373,9 @@
 				9CA627201E6522F60084ED1D /* AppDelegate.m */,
 				9C0524DF1E76DEC000604EAD /* ViewController */,
 				9C0524E61E76DF9700604EAD /* Cell */,
-				9CA627251E6522F60084ED1D /* Main.storyboard */,
+				9CB190AC1E781C8800AD1C2E /* View */,
 				9CA627281E6522F60084ED1D /* Assets.xcassets */,
+				9CA627251E6522F60084ED1D /* Main.storyboard */,
 				9CA6272A1E6522F60084ED1D /* LaunchScreen.storyboard */,
 				9CA6272D1E6522F60084ED1D /* Info.plist */,
 				9CA6271C1E6522F60084ED1D /* Supporting Files */,
@@ -407,6 +407,15 @@
 				9CA627431E6522F60084ED1D /* Info.plist */,
 			);
 			path = FastScreenshotUITests;
+			sourceTree = "<group>";
+		};
+		9CB190AC1E781C8800AD1C2E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9CB190AD1E78642100AD1C2E /* GGShareMenuView.h */,
+				9CB190AE1E78642100AD1C2E /* GGShareMenuView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -598,6 +607,7 @@
 			files = (
 				9C0524E51E76DEC000604EAD /* ViewController.m in Sources */,
 				9C0524E41E76DEC000604EAD /* AboutViewController.m in Sources */,
+				9CB190AF1E78642100AD1C2E /* GGShareMenuView.m in Sources */,
 				9CA627211E6522F60084ED1D /* AppDelegate.m in Sources */,
 				9CA6271E1E6522F60084ED1D /* main.m in Sources */,
 				9C0524E91E76DFBB00604EAD /* AboutVCCell.m in Sources */,

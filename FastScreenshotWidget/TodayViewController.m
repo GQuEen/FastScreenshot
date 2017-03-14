@@ -125,14 +125,36 @@
 
 - (void)clickShareBtn:(UIButton *)sender {
     //0:微博 1:微信 2:qq 3:朋友圈
+    
+    NSURL *url;
     if (sender.tag == 0) {
+        url = [NSURL URLWithString:@"widget://weibo"];
         
+        [self.extensionContext openURL:url completionHandler:^(BOOL success) {
+            
+            NSLog(@"isSuccessed %d",success);
+        }];
     }else if (sender.tag == 1) {
-    
-    }else if (sender.tag == 2) {
-    
-    }else if (sender.tag == 3) {
+        url = [NSURL URLWithString:@"widget://weixin"];
         
+        [self.extensionContext openURL:url completionHandler:^(BOOL success) {
+            
+            NSLog(@"isSuccessed %d",success);
+        }];
+    }else if (sender.tag == 2) {
+        url = [NSURL URLWithString:@"widget://QQ"];
+        
+        [self.extensionContext openURL:url completionHandler:^(BOOL success) {
+            
+            NSLog(@"isSuccessed %d",success);
+        }];
+    }else if (sender.tag == 3) {
+        url = [NSURL URLWithString:@"widget://moment"];
+        
+        [self.extensionContext openURL:url completionHandler:^(BOOL success) {
+            
+            NSLog(@"isSuccessed %d",success);
+        }];
     }
 }
 
