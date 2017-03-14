@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) UIView *maskView;//背景蒙版
 
+@property (strong, nonatomic) UIView *shareMenuBackView;//分享菜单父view
+
 @end
 
 @implementation GGShareMenuView
@@ -35,13 +37,40 @@
     _maskView.alpha = 0.3;
     _maskView.userInteractionEnabled = YES;
     [_maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissShareMenuView)]];
-    [self addSubview:self.maskView];
+   
+    _shareMenuBackView = [[UIView alloc]initWithFrame:CGRectMake(0, MAIN_SCREEN_HEIGHT-232, MAIN_SCREEN_WIDTH, 232)];
+   
+    UIView *shareMenuItemView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH, 182)];
+    shareMenuItemView.backgroundColor = [UIColor whiteColor];
     
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(15, 181, MAIN_SCREEN_WIDTH-30, 1)];
+    line.backgroundColor = [UIColor colorWithRed:225/255.0 green:225/255.0 blue:225/255.0 alpha:1];
+    
+    UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    cancelBtn.frame = CGRectMake(0, 182, MAIN_SCREEN_WIDTH, 50);
+//    [cancelBtn setBackgroundColor:[UIColor whiteColor]];
+    [cancelBtn setBackgroundImage:[UIImage createImageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+    [cancelBtn setBackgroundImage:[UIImage createImageWithColor:[UIColor colorWithRed:216/255.0 green:216/255.0 blue:216/255.0 alpha:1]] forState:UIControlStateHighlighted];
+    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelBtn setTitleColor:MAIN_FONT_COLOR forState:UIControlStateNormal];
+    [cancelBtn addTarget:self action:@selector(cancelHandlel) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [self addSubview:self.maskView];
+    [self addSubview:self.shareMenuBackView];
+    [_shareMenuBackView addSubview:shareMenuItemView];
+    [_shareMenuBackView addSubview:line];
+    [_shareMenuBackView addSubview:cancelBtn];
     
 }
 
+- (void)cancelHandlel {
+    NSLog(@"点击取消消失");
+    [self removeFromSuperview];
+}
+
 - (void)dismissShareMenuView {
-    NSLog(@"小时");
+    NSLog(@"点击蒙版消失");
     [self removeFromSuperview];
 }
 
