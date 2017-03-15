@@ -16,11 +16,15 @@ typedef NS_ENUM(NSInteger,GGSocialPlatformType) {
     GGSocialPlatformType_WechatFavorite     = 3,//微信收藏
     GGSocialPlatformType_QQ                 = 4,//QQ聊天页面
     GGSocialPlatformType_Qzone              = 5,//qq空
+    GGSocialPlatformType_Down              = 6,//down
+    GGSocialPlatformType_More              = 7,//more
 };
 
 typedef void(^GGSocialSharePlatformSelectionBlock)(GGSocialPlatformType platformType);
 
 @interface GGShareMenuView : UIView
+
+@property (copy, nonatomic) GGSocialSharePlatformSelectionBlock sharePlatformSelectionBlock;
 
 - (void)showShareMenuViewInWindowWithPlatformSelectionBlock:(GGSocialSharePlatformSelectionBlock)sharePlatformSelectionBlock;
 

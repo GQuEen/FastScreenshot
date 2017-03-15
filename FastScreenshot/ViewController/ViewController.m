@@ -82,7 +82,19 @@
     GGShareMenuView *shareMenuView = [[GGShareMenuView alloc]initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT)];
     
     [shareMenuView showShareMenuViewInWindowWithPlatformSelectionBlock:^(GGSocialPlatformType platformType) {
-        NSLog(@"wqdqw");
+        if (platformType == GGSocialPlatformType_Sina) {
+            NSLog(@"分享微博");
+        }else if (platformType == GGSocialPlatformType_WechatSession) {
+            NSLog(@"分享微信");
+        }else if (platformType == GGSocialPlatformType_WechatTimeLine) {
+            NSLog(@"分享朋友圈");
+        }else if (platformType == GGSocialPlatformType_QQ) {
+            NSLog(@"分享QQ");
+        }else if (platformType == GGSocialPlatformType_Down) {
+            NSLog(@"保存本地");
+        }else if (platformType == GGSocialPlatformType_More) {
+            NSLog(@"更多");
+        }
     }];
     
 }
