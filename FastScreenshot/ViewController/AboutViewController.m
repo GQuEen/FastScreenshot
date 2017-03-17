@@ -11,7 +11,6 @@
 
 #define BACK_COLOR ([UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1])
 
-#define IMAGE_COLOR ([UIColor colorWithRed:98/255.0 green:108/255.0 blue:245/255.0 alpha:1])
 
 @interface AboutViewController ()<UITableViewDelegate,UITableViewDataSource>
 

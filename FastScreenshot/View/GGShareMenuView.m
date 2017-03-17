@@ -125,23 +125,22 @@
             self.sharePlatformSelectionBlock(GGSocialPlatformType_More);
         }
     }
+    [self shareMenuViewRemoveFormSuperview];
 }
 
 - (void)cancelHandlel {
     NSLog(@"点击取消消失");
     
-    __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:0.2 animations:^{
-        weakSelf.maskView.alpha = 0;
-        weakSelf.shareMenuBackView.frame = CGRectMake(0, MAIN_SCREEN_HEIGHT, MAIN_SCREEN_WIDTH, 232);
-    } completion:^(BOOL finished) {
-        [weakSelf removeFromSuperview];
-    }];
+    [self shareMenuViewRemoveFormSuperview];
     
 }
 
 - (void)dismissShareMenuView {
     NSLog(@"点击蒙版消失");
+    [self shareMenuViewRemoveFormSuperview];
+}
+
+- (void)shareMenuViewRemoveFormSuperview {
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.2 animations:^{
         weakSelf.maskView.alpha = 0;

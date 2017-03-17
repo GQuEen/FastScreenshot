@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGShareMenuView.h"
 
 @interface ViewController : UIViewController
 
+- (void)shareToPlatformType:(GGSocialPlatformType)platformType;
 
 @end
 

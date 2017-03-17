@@ -12,6 +12,8 @@
 
 @interface AppDelegate ()
 
+@property (strong, nonatomic) ViewController *vc;
+
 @end
 
 @implementation AppDelegate
@@ -21,9 +23,9 @@
     
 //    _window = [[UIWindow alloc]initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT)];
     
-    ViewController *vc = [[ViewController alloc]init];
+    _vc = [[ViewController alloc]init];
     
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self.vc];
     _window.rootViewController = nav;
     [_window makeKeyAndVisible];
     
@@ -61,17 +63,22 @@
     if ([[url absoluteString] hasPrefix:@"widget"]) {
         if ([[url host] isEqualToString:@"weibo"]) {
             NSLog(@"点击了 widget中的weibo");
+            [_vc shareToPlatformType:0];
         }else if ([[url host] isEqualToString:@"weixin"]) {
             NSLog(@"点击了 widget中的weixin");
+            [_vc shareToPlatformType:1];
         }else if ([[url host] isEqualToString:@"QQ"]) {
             NSLog(@"点击了 widget中的QQ");
+            [_vc shareToPlatformType:4];
         }else if ([[url host] isEqualToString:@"moment"]) {
             NSLog(@"点击了 widget中的朋友圈");
+            [_vc shareToPlatformType:2];
         }
     }
     
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -9,12 +9,15 @@
 #import "ViewController.h"
 #import "AboutViewController.h"
 #import <Photos/Photos.h>
-#import "GGShareMenuView.h"
 
+#import <TencentOpenAPI/QQApiInterface.h>
+#import "WXApi.h"
+#import "WeiboSDK.h"
 
 @interface ViewController ()
 
 @property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonnull) UIImage *shareImage;
 @property (strong, nonatomic) UIBarButtonItem *aboutBarButtonItem;
 
 @end
@@ -24,10 +27,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"测试";
+    self.title = @"快截图";
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
-    [self.view addSubview:self.imageView];
+//    [self.view addSubview:self.imageView];
     self.navigationItem.rightBarButtonItem = self.aboutBarButtonItem;
     
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
@@ -36,6 +39,7 @@
     
     NSLog(@"%@",assetsFetchResults);
     
+    __weak typeof(self) weakSelf = self;
     PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
     PHAsset *asset = assetsFetchResults[2];
     [imageManager requestImageForAsset:asset
@@ -45,59 +49,149 @@
                          resultHandler:^(UIImage *result, NSDictionary *info) {
                              
                              // 得到一张 UIImage，展示到界面上
-                             self.imageView.image = result;
+//                             weakSelf.imageView.image = result;
+                             weakSelf.shareImage = result;
                              
                          }];
     
     UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    testBtn.frame = CGRectMake(100, 300, 100, 30);
-    [testBtn setBackgroundColor:[UIColor redColor]];
+    testBtn.frame = CGRectMake(100, 200, 100, 30);
+//    [testBtn setBackgroundColor:[UIColor redColor]];
+    [testBtn setTitle:@"分享菜单" forState:UIControlStateNormal];
+    [testBtn setTitleColor:IMAGE_COLOR forState:UIControlStateNormal];
+    [testBtn sizeToFit];
     [testBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:testBtn];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)clickBtn:(UIButton *)sender {
-    
-//    [UMSocialShareUIConfig shareInstance].shareTitleViewConfig.isShow = NO;
-//    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageMaxItemIconWidth = 53;
-//    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageMaxItemIconHeight = 53;
-//    
-//    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageMaxRowCountForLandscapeAndBottom = 2;
-//    
-//    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageMaxColumnCountForLandscapeAndBottom = 3;
-//    
-//    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewBackgroundColor = [UIColor whiteColor];
-//    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageBGColor = [UIColor whiteColor];
-//    
-//    [UMSocialShareUIConfig shareInstance].shareCancelControlConfig.shareCancelControlBackgroundColor = [UIColor whiteColor];
-//    [UMSocialShareUIConfig shareInstance].shareCancelControlConfig.shareCancelControlText = @"取消";
-    
-//    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
-//        // 根据获取的platformType确定所选平台进行下一步操作
-//        NSLog(@"%@",userInfo);
-//        
-//    }];
-    NSLog(@"点击");
+
     GGShareMenuView *shareMenuView = [[GGShareMenuView alloc]initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT)];
-    
+    __weak typeof(self) weakSelf = self;
     [shareMenuView showShareMenuViewInWindowWithPlatformSelectionBlock:^(GGSocialPlatformType platformType) {
-        if (platformType == GGSocialPlatformType_Sina) {
-            NSLog(@"分享微博");
-        }else if (platformType == GGSocialPlatformType_WechatSession) {
-            NSLog(@"分享微信");
-        }else if (platformType == GGSocialPlatformType_WechatTimeLine) {
-            NSLog(@"分享朋友圈");
-        }else if (platformType == GGSocialPlatformType_QQ) {
-            NSLog(@"分享QQ");
-        }else if (platformType == GGSocialPlatformType_Down) {
-            NSLog(@"保存本地");
-        }else if (platformType == GGSocialPlatformType_More) {
-            NSLog(@"更多");
-        }
+        [weakSelf shareToPlatformType:platformType];
     }];
     
 }
+
+- (void)imageSavedToPhotosAlbum:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    
+    NSString *message;
+    
+    if (!error) {
+        
+        message = @"成功保存到相册";
+        
+    }else {
+        
+        message = [error description];
+        
+    }
+    
+    NSLog(@"message is %@",message);
+    
+}
+//分享操作接口
+
+- (void)shareToPlatformType:(GGSocialPlatformType)platformType {
+    if (platformType == GGSocialPlatformType_Sina) {
+        NSLog(@"分享微博");
+        //判断微博是否安装
+        if ([WeiboSDK isWeiboAppInstalled]) {
+            [self shareImageToPlatformType:0];
+        }else {
+            //未安装微博提示
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"温馨提示" message:@"您的设备没有安装微博" preferredStyle:UIAlertControllerStyleAlert];
+            //为alert增加一个Action，
+            UIAlertAction *okActin=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okActin];
+            //显示
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }else if (platformType == GGSocialPlatformType_WechatSession) {
+        NSLog(@"分享微信");
+        //判断微信是否安装
+        if ([WXApi isWXAppInstalled]) {
+            [self shareImageToPlatformType:1];
+        }else {
+            //未安装微信提示
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"温馨提示" message:@"您的设备没有安装微信" preferredStyle:UIAlertControllerStyleAlert];
+            //为alert增加一个Action，
+            UIAlertAction *okActin=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okActin];
+            //显示
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }else if (platformType == GGSocialPlatformType_WechatTimeLine) {
+        NSLog(@"分享朋友圈");
+        //判断微信是否安装
+        if ([WXApi isWXAppInstalled]) {
+            [self shareImageToPlatformType:2];
+        }else {
+            //未安装微信提示
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"温馨提示" message:@"您的设备没有安装微信" preferredStyle:UIAlertControllerStyleAlert];
+            //为alert增加一个Action，
+            UIAlertAction *okActin=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okActin];
+            //显示
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }else if (platformType == GGSocialPlatformType_QQ) {
+        NSLog(@"分享QQ");
+        //判断QQ是否安装
+        if ([QQApiInterface isQQInstalled]) {
+            [self shareImageToPlatformType:4];
+        }else {
+            //未安装QQ提示
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"温馨提示" message:@"您的设备没有安装QQ" preferredStyle:UIAlertControllerStyleAlert];
+            //为alert增加一个Action，
+            UIAlertAction *okActin=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okActin];
+            //显示
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }else if (platformType == GGSocialPlatformType_Down) {
+        NSLog(@"保存本地");
+        
+        UIImageWriteToSavedPhotosAlbum(self.shareImage, self, @selector(imageSavedToPhotosAlbum:didFinishSavingWithError:contextInfo:), NULL);
+        
+    }else if (platformType == GGSocialPlatformType_More) {
+        NSLog(@"更多");
+        //调用系统分享
+        NSMutableArray *items = [[NSMutableArray alloc] init];
+        [items addObject:@"分享图片"];
+        [items addObject:self.shareImage];
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
+        [self presentViewController:activityViewController animated:YES completion:nil];
+    }
+
+}
+
+//分享操作
+- (void)shareImageToPlatformType:(UMSocialPlatformType)platformType {
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建图片内容对象
+    UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
+    //如果有缩略图，则设置缩略图
+//    shareObject.thumbImage = [UIImage imageNamed:@"icon"];
+    [shareObject setShareImage:self.shareImage];
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            NSLog(@"************Share fail with error %@*********",error);
+        }else{
+            NSLog(@"response data is %@",data);
+        }
+    }];
+}
+
 
 - (UIImageView *)imageView {
     if (!_imageView) {
