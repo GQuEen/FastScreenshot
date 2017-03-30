@@ -65,8 +65,10 @@
                                options:nil
                          resultHandler:^(UIImage *result, NSDictionary *info) {
                              
+                             NSData *imageData = UIImageJPEGRepresentation(result, 0.1);
+                             UIImage *compressedImage = [UIImage imageWithData:imageData];
                              // 得到一张 UIImage，展示到界面上
-                             weakSelf.screenshotImageView.image = result;
+                             weakSelf.screenshotImageView.image = compressedImage;
                              
                          }];
     [self setupScroll];

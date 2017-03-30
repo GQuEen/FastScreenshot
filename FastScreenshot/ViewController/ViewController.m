@@ -26,10 +26,22 @@
 
 @implementation ViewController
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        static dispatch_once_t disOnce;
+        GGWeak;
+        dispatch_once(&disOnce,^{
+            [[NSNotificationCenter defaultCenter] addObserver:weakSelf selector:@selector(clickWidgetBtn:) name:@"clickWidgetBtn" object:nil];
+            
+        });
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickWidgetBtn:) name:@"clickWidgetBtn" object:nil];
     
     self.title = @"快一步";
     self.view.backgroundColor = [UIColor whiteColor];
@@ -37,16 +49,36 @@
     [self.view addSubview:self.imageView];
     self.navigationItem.rightBarButtonItem = self.aboutBarButtonItem;
     
+    
+    
+    _testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _testBtn.frame = CGRectMake(100, 200, 100, 30);
+    _testBtn.layer.borderWidth = 1;
+    _testBtn.layer.borderColor = IMAGE_COLOR.CGColor;
+    _testBtn.layer.cornerRadius = 10;
+    _testBtn.center = CGPointMake(self.view.frame.size.width/2, CGRectGetMaxY(self.imageView.frame)+25);
+    [_testBtn setTitle:@"分享菜单" forState:UIControlStateNormal];
+    [_testBtn setTitleColor:IMAGE_COLOR forState:UIControlStateNormal];
+    [_testBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_testBtn];
+    // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    GGWeak;
+    
     //获取相机胶卷
     PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
-
+    
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
     options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
-//    PHFetchResult *assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
+    //    PHFetchResult *assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
     PHFetchResult *assetsFetchResults = [PHAsset fetchAssetsInAssetCollection:smartAlbums[0] options:options];
     NSLog(@"%@",assetsFetchResults);
     
-    GGWeak;
+//    GGWeak;
     PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
     PHAsset *asset = assetsFetchResults[assetsFetchResults.count-1];
     [imageManager requestImageForAsset:asset
@@ -61,18 +93,6 @@
                              NSLog(@"%@",result)
                              
                          }];
-    
-    _testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _testBtn.frame = CGRectMake(100, 200, 100, 30);
-    _testBtn.layer.borderWidth = 1;
-    _testBtn.layer.borderColor = IMAGE_COLOR.CGColor;
-    _testBtn.layer.cornerRadius = 10;
-    _testBtn.center = CGPointMake(self.view.frame.size.width/2, CGRectGetMaxY(self.imageView.frame)+25);
-    [_testBtn setTitle:@"分享菜单" forState:UIControlStateNormal];
-    [_testBtn setTitleColor:IMAGE_COLOR forState:UIControlStateNormal];
-    [_testBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_testBtn];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 //接受分享消息
 - (void)clickWidgetBtn:(NSNotification *)sender {

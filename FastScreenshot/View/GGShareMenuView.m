@@ -96,6 +96,7 @@
     [cancelBtn setBackgroundImage:[UIImage createImageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
     [cancelBtn setBackgroundImage:[UIImage createImageWithColor:[UIColor colorWithRed:216/255.0 green:216/255.0 blue:216/255.0 alpha:1]] forState:UIControlStateHighlighted];
     [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    cancelBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [cancelBtn setTitleColor:MAIN_FONT_COLOR forState:UIControlStateNormal];
     [cancelBtn addTarget:self action:@selector(cancelHandlel) forControlEvents:UIControlEventTouchUpInside];
     
