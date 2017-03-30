@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "AboutViewController.h"
+#import "GGNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -20,12 +21,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSLog(@"加载完成");
     
 //    _window = [[UIWindow alloc]initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT)];
     
     _vc = [[ViewController alloc]init];
     
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self.vc];
+    GGNavigationController *nav = [[GGNavigationController alloc]initWithRootViewController:self.vc];
     _window.rootViewController = nav;
     [_window makeKeyAndVisible];
     
@@ -59,26 +61,20 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    
+
+    NSLog(@"跳转");
     if ([[url absoluteString] hasPrefix:@"widget"]) {
-        if ([[url host] isEqualToString:@"weibo"]) {
-            NSLog(@"点击了 widget中的weibo");
-            [_vc shareToPlatformType:0];
-        }else if ([[url host] isEqualToString:@"weixin"]) {
-            NSLog(@"点击了 widget中的weixin");
-            [_vc shareToPlatformType:1];
-        }else if ([[url host] isEqualToString:@"QQ"]) {
-            NSLog(@"点击了 widget中的QQ");
-            [_vc shareToPlatformType:4];
-        }else if ([[url host] isEqualToString:@"moment"]) {
-            NSLog(@"点击了 widget中的朋友圈");
-            [_vc shareToPlatformType:2];
-        }
+        dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC));
+        
+        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"clickWidgetBtn" object:nil userInfo:@{@"host":url.host}];
+        });
+        
+        
     }
     
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

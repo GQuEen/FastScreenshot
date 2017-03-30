@@ -10,6 +10,9 @@
 #import <Photos/Photos.h>
 #import <NotificationCenter/NotificationCenter.h>
 
+#define MAIN_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define MAIN_SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
 @interface TodayViewController () <NCWidgetProviding>
 
 @property (strong, nonatomic) UIImageView *screenshotImageView;//显示截图的imageView
@@ -22,24 +25,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.preferredContentSize = CGSizeMake(375, 110);
+
     
-    _screenshotImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 10, 75, 90)];
+    CGFloat kImageViewWidth,kImageViewHeight;
+    
+    if (MAIN_SCREEN_WIDTH == 320) {
+        kImageViewWidth = 62;
+        kImageViewHeight = 75;
+    }else if (MAIN_SCREEN_WIDTH == 375 || MAIN_SCREEN_WIDTH == 414) {
+        kImageViewWidth = 75;
+        kImageViewHeight = 90;
+    }
+    
+    self.preferredContentSize = CGSizeMake(MAIN_SCREEN_WIDTH, kImageViewHeight+20);
+    
+    _screenshotImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 10, kImageViewWidth, kImageViewHeight)];
     _screenshotImageView.contentMode = UIViewContentModeScaleAspectFill;
     _screenshotImageView.layer.cornerRadius = 5;
     _screenshotImageView.layer.masksToBounds = YES;
     
     [self.view addSubview:_screenshotImageView];
     
+    //获取相机胶卷
+    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
+    
     //按时间顺序排序并获取资源
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
     options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
-    PHFetchResult *assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
+//    PHFetchResult *assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
+    PHFetchResult *assetsFetchResults = [PHAsset fetchAssetsInAssetCollection:smartAlbums[0] options:options];
     
     __weak typeof(self) weakSelf = self;
     //请求图片
     PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
-    PHAsset *asset = assetsFetchResults[assetsFetchResults.count-2];
+    PHAsset *asset = assetsFetchResults[assetsFetchResults.count-1];
     [imageManager requestImageForAsset:asset
                             targetSize:PHImageManagerMaximumSize
                            contentMode:PHImageContentModeAspectFill
@@ -64,7 +83,19 @@
 }
 
 - (void)setupScroll {
-    _shareScorllView = [[UIScrollView alloc]initWithFrame:CGRectMake(105, 30, 375-75-30-41-16, 51)];
+    
+    CGFloat kScrollViewY,kShareItemWidth,margin;
+    if (MAIN_SCREEN_WIDTH == 320) {
+        kScrollViewY = 25;
+        kShareItemWidth = 45;
+    }else if (MAIN_SCREEN_WIDTH == 375 || MAIN_SCREEN_WIDTH == 414) {
+        kScrollViewY = 30;
+        kShareItemWidth = 50;
+    }
+    
+    margin = (MAIN_SCREEN_WIDTH-72-self.screenshotImageView.frame.size.width - kShareItemWidth*3)/4;
+    
+    _shareScorllView = [[UIScrollView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.screenshotImageView.frame)+margin, kScrollViewY, MAIN_SCREEN_WIDTH-72-self.screenshotImageView.frame.size.width-margin, kShareItemWidth)];
     _shareScorllView.showsVerticalScrollIndicator = NO;
     _shareScorllView.showsHorizontalScrollIndicator = NO;
     _shareScorllView.contentSize = CGSizeMake(self.shareScorllView.frame.size.width*2, self.shareScorllView.frame.size.height);
@@ -73,8 +104,16 @@
 }
 
 - (void)setupMoreButton {
+    
+    CGFloat kBtnY;
+    if (MAIN_SCREEN_WIDTH == 320) {
+        kBtnY = (95-26)/2;
+    }else if (MAIN_SCREEN_WIDTH == 375 || MAIN_SCREEN_WIDTH == 414) {
+        kBtnY = (110-26)/2;
+    }
+    
     _moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _moreButton.frame = CGRectMake(CGRectGetMaxX(self.shareScorllView.frame), 42.5, 26, 26);
+    _moreButton.frame = CGRectMake(CGRectGetMaxX(self.shareScorllView.frame), kBtnY, 26, 26);
     [_moreButton setImage:[UIImage imageNamed:@"wg_next"] forState:UIControlStateNormal];
     [_moreButton addTarget:self action:@selector(clickMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
     _moreButton.selected = NO;
@@ -83,11 +122,19 @@
 
 - (void)setupShareButton {
     
+    CGFloat margin,kShareItemWidth = 0.0;
+    if (MAIN_SCREEN_WIDTH == 320) {
+        kShareItemWidth = 45;
+    }else if (MAIN_SCREEN_WIDTH == 375 || MAIN_SCREEN_WIDTH == 414) {
+        kShareItemWidth = 50;
+    }
+    margin = (MAIN_SCREEN_WIDTH-72-self.screenshotImageView.frame.size.width - kShareItemWidth*3)/4;
+    
     NSArray *imageDateArray = @[@"wg_weibo",@"wg_wechat",@"wg_qq",@"wg_moments"];
     for (int i = 0; i < imageDateArray.count; i ++) {
         UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         shareBtn.tag = i;
-        shareBtn.frame = CGRectMake(i*71, 0, 51, 51);
+        shareBtn.frame = CGRectMake(i*(margin+kShareItemWidth), 0, kShareItemWidth, kShareItemWidth);
         [shareBtn setImage:[UIImage imageNamed:imageDateArray[i]] forState:UIControlStateNormal];
         [_shareScorllView addSubview:shareBtn];
         [shareBtn addTarget:self action:@selector(clickShareBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -158,9 +205,9 @@
     }
 }
 
-- (UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets {
-    return UIEdgeInsetsZero;
-}
+//- (UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets {
+//    return UIEdgeInsetsZero;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

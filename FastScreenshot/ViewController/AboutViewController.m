@@ -80,7 +80,7 @@
         
         //创建版本号label
         UILabel *versionLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-        versionLabel.text = @"快截图 v1.0";
+        versionLabel.text = @"快一步 v1.0";
         versionLabel.font = [UIFont systemFontOfSize:13];
         versionLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
         [versionLabel sizeToFit];
@@ -172,7 +172,7 @@
         if (indexPath.row == 0) {
             cell.contentLabel.text = @"建议反馈";
         }else if (indexPath.row == 1) {
-            cell.contentLabel.text = @"给快截图评分";
+            cell.contentLabel.text = @"给快一步评分";
         }
         [cell.contentLabel sizeToFit];
         return cell;

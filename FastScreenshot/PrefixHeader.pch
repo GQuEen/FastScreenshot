@@ -21,6 +21,8 @@
 
 #import "UIImage+Tool.h"
 
+#define GGWeak __weak __typeof(self) weakSelf = self
+
 #define MAIN_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define MAIN_SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
@@ -38,5 +40,16 @@
 
 #define YM_WEIXIN_APP_ID (@"wxae90db8a0e700e46")
 #define YM_WEIXIN_APP_SECRET (@"577aba9db67f278786f2450ab6538392")
+
+#ifdef DEBUG
+
+// 调试时改变NSLog方法，输出时间、方法名、行数、输入的内容
+#define NSLog(format, ...) printf("\n[%s] %s [第%d行] %s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);
+
+#else
+
+#define NSLog(format, ...)
+
+#endif
 
 #endif /* PrefixHeader_pch */

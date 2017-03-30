@@ -30,7 +30,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9CA627181E6522F60084ED1D"
-               BuildableName = "FastScreenshot.app"
+               BuildableName = "&#x5feb;&#x622a;&#x56fe;.app"
                BlueprintName = "FastScreenshot"
                ReferencedContainer = "container:FastScreenshot.xcodeproj">
             </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9CA627181E6522F60084ED1D"
-            BuildableName = "FastScreenshot.app"
+            BuildableName = "&#x5feb;&#x622a;&#x56fe;.app"
             BlueprintName = "FastScreenshot"
             ReferencedContainer = "container:FastScreenshot.xcodeproj">
          </BuildableReference>
@@ -92,7 +92,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9CA627181E6522F60084ED1D"
-            BuildableName = "FastScreenshot.app"
+            BuildableName = "&#x5feb;&#x622a;&#x56fe;.app"
             BlueprintName = "FastScreenshot"
             ReferencedContainer = "container:FastScreenshot.xcodeproj">
          </BuildableReference>

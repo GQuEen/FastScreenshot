@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger,GGSocialPlatformType) {
     GGSocialPlatformType_More              = 7,//more
 };
 
-typedef void(^GGSocialSharePlatformSelectionBlock)(GGSocialPlatformType platformType);
+typedef void(^GGSocialSharePlatformSelectionBlock)(UMSocialPlatformType platformType);
 
 @interface GGShareMenuView : UIView
 

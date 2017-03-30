@@ -11,7 +11,7 @@
 
 @interface ViewController : UIViewController
 
-- (void)shareToPlatformType:(GGSocialPlatformType)platformType;
+//- (void)shareToPlatformType:(GGSocialPlatformType)platformType;
 
 @end
 

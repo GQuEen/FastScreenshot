@@ -26,7 +26,7 @@
     [self creatShareMenuView];
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     
-    __weak typeof(self) weakSelf = self;
+    GGWeak;
     [UIView animateWithDuration:0.2 animations:^{
         weakSelf.maskView.alpha = 0.5;
         weakSelf.shareMenuBackView.frame = CGRectMake(0, MAIN_SCREEN_HEIGHT-238, MAIN_SCREEN_WIDTH, 232);
@@ -87,7 +87,7 @@
         [shareMenuItemView addSubview:itemBtn];
     }
     
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(15, 181, MAIN_SCREEN_WIDTH-30, 1)];
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(15, 182, MAIN_SCREEN_WIDTH-30, 1)];
     line.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
     
     UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -103,8 +103,8 @@
     [self addSubview:self.maskView];
     [self addSubview:self.shareMenuBackView];
     [_shareMenuBackView addSubview:shareMenuItemView];
-    [_shareMenuBackView addSubview:line];
     [_shareMenuBackView addSubview:cancelBtn];
+    [_shareMenuBackView addSubview:line];
     
 }
 
@@ -112,17 +112,17 @@
     NSLog(@"点击item : %ld",sender.tag);
     if (self.sharePlatformSelectionBlock) {
         if (sender.tag == 0) {
-            self.sharePlatformSelectionBlock(GGSocialPlatformType_Sina);
+            self.sharePlatformSelectionBlock(UMSocialPlatformType_Sina);
         }else if (sender.tag == 1) {
-            self.sharePlatformSelectionBlock(GGSocialPlatformType_WechatSession);
+            self.sharePlatformSelectionBlock(UMSocialPlatformType_WechatSession);
         }else if (sender.tag == 2) {
-            self.sharePlatformSelectionBlock(GGSocialPlatformType_WechatTimeLine);
+            self.sharePlatformSelectionBlock(UMSocialPlatformType_WechatTimeLine);
         }else if (sender.tag == 3) {
-            self.sharePlatformSelectionBlock(GGSocialPlatformType_QQ);
+            self.sharePlatformSelectionBlock(UMSocialPlatformType_QQ);
         }else if (sender.tag == 4) {
-            self.sharePlatformSelectionBlock(GGSocialPlatformType_Down);
+            self.sharePlatformSelectionBlock(UMSocialPlatformType_UserDefine_Begin+1);
         }else if (sender.tag == 5) {
-            self.sharePlatformSelectionBlock(GGSocialPlatformType_More);
+            self.sharePlatformSelectionBlock(UMSocialPlatformType_UserDefine_Begin+2);
         }
     }
     [self shareMenuViewRemoveFormSuperview];
@@ -141,7 +141,7 @@
 }
 
 - (void)shareMenuViewRemoveFormSuperview {
-    __weak typeof(self) weakSelf = self;
+    GGWeak;
     [UIView animateWithDuration:0.2 animations:^{
         weakSelf.maskView.alpha = 0;
         weakSelf.shareMenuBackView.frame = CGRectMake(0, MAIN_SCREEN_HEIGHT, MAIN_SCREEN_WIDTH, 232);

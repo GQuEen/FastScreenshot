@@ -35,7 +35,7 @@
 		9C165C0C1E718B6C0067C3A0 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C165C0B1E718B6C0067C3A0 /* ImageIO.framework */; };
 		9C4DD3E21E6D838E00FD4B1D /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4DD3C91E6D79E200FD4B1D /* NotificationCenter.framework */; };
 		9C4DD3E61E6D838E00FD4B1D /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4DD3E51E6D838E00FD4B1D /* TodayViewController.m */; };
-		9C4DD3ED1E6D838E00FD4B1D /* FastScreenshotWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9C4DD3E11E6D838E00FD4B1D /* FastScreenshotWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9C4DD3ED1E6D838E00FD4B1D /* 快截图.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9C4DD3E11E6D838E00FD4B1D /* 快截图.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9CA6271E1E6522F60084ED1D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6271D1E6522F60084ED1D /* main.m */; };
 		9CA627211E6522F60084ED1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA627201E6522F60084ED1D /* AppDelegate.m */; };
 		9CA627271E6522F60084ED1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CA627251E6522F60084ED1D /* Main.storyboard */; };
@@ -45,6 +45,7 @@
 		9CA627421E6522F60084ED1D /* FastScreenshotUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA627411E6522F60084ED1D /* FastScreenshotUITests.m */; };
 		9CB190AF1E78642100AD1C2E /* GGShareMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB190AE1E78642100AD1C2E /* GGShareMenuView.m */; };
 		9CB190B31E7871D500AD1C2E /* UIImage+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB190B21E7871D500AD1C2E /* UIImage+Tool.m */; };
+		9CE9B63E1E8D310F00648F2C /* GGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE9B63D1E8D310F00648F2C /* GGNavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +79,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				9C4DD3ED1E6D838E00FD4B1D /* FastScreenshotWidget.appex in Embed App Extensions */,
+				9C4DD3ED1E6D838E00FD4B1D /* 快截图.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,13 +134,13 @@
 		9C165C091E718B5D0067C3A0 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9C165C0B1E718B6C0067C3A0 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		9C4DD3C91E6D79E200FD4B1D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		9C4DD3E11E6D838E00FD4B1D /* FastScreenshotWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FastScreenshotWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C4DD3E11E6D838E00FD4B1D /* 快截图.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "快截图.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4DD3E41E6D838E00FD4B1D /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
 		9C4DD3E51E6D838E00FD4B1D /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
 		9C4DD3EA1E6D838E00FD4B1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C4DD3F11E6D839600FD4B1D /* FastScreenshotWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FastScreenshotWidget.entitlements; sourceTree = "<group>"; };
 		9C4DD3F21E6D83E400FD4B1D /* FastScreenshot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FastScreenshot.entitlements; sourceTree = "<group>"; };
-		9CA627191E6522F60084ED1D /* FastScreenshot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastScreenshot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CA627191E6522F60084ED1D /* 快截图.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "快截图.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA6271D1E6522F60084ED1D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9CA6271F1E6522F60084ED1D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9CA627201E6522F60084ED1D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -158,6 +159,8 @@
 		9CB190B11E7871D500AD1C2E /* UIImage+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tool.h"; sourceTree = "<group>"; };
 		9CB190B21E7871D500AD1C2E /* UIImage+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tool.m"; sourceTree = "<group>"; };
 		9CE83B8E1E769E4000AECB3A /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		9CE9B63C1E8D310F00648F2C /* GGNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGNavigationController.h; sourceTree = "<group>"; };
+		9CE9B63D1E8D310F00648F2C /* GGNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGNavigationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +219,8 @@
 				9C0524E31E76DEC000604EAD /* ViewController.m */,
 				9C0524E01E76DEC000604EAD /* AboutViewController.h */,
 				9C0524E11E76DEC000604EAD /* AboutViewController.m */,
+				9CE9B63C1E8D310F00648F2C /* GGNavigationController.h */,
+				9CE9B63D1E8D310F00648F2C /* GGNavigationController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -358,10 +363,10 @@
 		9CA6271A1E6522F60084ED1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9CA627191E6522F60084ED1D /* FastScreenshot.app */,
+				9CA627191E6522F60084ED1D /* 快截图.app */,
 				9CA627321E6522F60084ED1D /* FastScreenshotTests.xctest */,
 				9CA6273D1E6522F60084ED1D /* FastScreenshotUITests.xctest */,
-				9C4DD3E11E6D838E00FD4B1D /* FastScreenshotWidget.appex */,
+				9C4DD3E11E6D838E00FD4B1D /* 快截图.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -448,7 +453,7 @@
 			);
 			name = FastScreenshotWidget;
 			productName = FastScreenshotWidget;
-			productReference = 9C4DD3E11E6D838E00FD4B1D /* FastScreenshotWidget.appex */;
+			productReference = 9C4DD3E11E6D838E00FD4B1D /* 快截图.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		9CA627181E6522F60084ED1D /* FastScreenshot */ = {
@@ -467,7 +472,7 @@
 			);
 			name = FastScreenshot;
 			productName = FastScreenshot;
-			productReference = 9CA627191E6522F60084ED1D /* FastScreenshot.app */;
+			productReference = 9CA627191E6522F60084ED1D /* 快截图.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9CA627311E6522F60084ED1D /* FastScreenshotTests */ = {
@@ -623,6 +628,7 @@
 				9C0524E41E76DEC000604EAD /* AboutViewController.m in Sources */,
 				9CB190AF1E78642100AD1C2E /* GGShareMenuView.m in Sources */,
 				9CA627211E6522F60084ED1D /* AppDelegate.m in Sources */,
+				9CE9B63E1E8D310F00648F2C /* GGNavigationController.m in Sources */,
 				9CA6271E1E6522F60084ED1D /* main.m in Sources */,
 				9C0524E91E76DFBB00604EAD /* AboutVCCell.m in Sources */,
 			);
@@ -684,6 +690,116 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9C48620F1E7C1128006EDA81 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AdHoc;
+		};
+		9C4862101E7C1128006EDA81 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = FastScreenshot/FastScreenshot.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = LW67YFH2F2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FastScreenshot/UMSocial/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/FastScreenshot/UMSocial/UMSocialSDK",
+					"$(PROJECT_DIR)/FastScreenshot/UMSocial/UMSocialUI",
+				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/FastScreenshot/Prefixheader.pch";
+				INFOPLIST_FILE = FastScreenshot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FastScreenshot/UMSocial/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/FastScreenshot/UMSocial/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/FastScreenshot/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/FastScreenshot/UMSocial/UMSocialSDK",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jiyeon.FastScreenshot-wlb";
+				PRODUCT_NAME = "快截图";
+				PROVISIONING_PROFILE = "";
+			};
+			name = AdHoc;
+		};
+		9C4862111E7C1128006EDA81 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FastScreenshotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jiyeon.FastScreenshotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FastScreenshot.app/FastScreenshot";
+			};
+			name = AdHoc;
+		};
+		9C4862121E7C1128006EDA81 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = FastScreenshotUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jiyeon.FastScreenshotUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FastScreenshot;
+				USES_XCTRUNNER = YES;
+			};
+			name = AdHoc;
+		};
+		9C4862131E7C1128006EDA81 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = FastScreenshotWidget/FastScreenshotWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = LW67YFH2F2;
+				INFOPLIST_FILE = FastScreenshotWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jiyeon.FastScreenshot-wlb.FastScreenshotWidget";
+				PRODUCT_NAME = "快截图";
+				SKIP_INSTALL = YES;
+			};
+			name = AdHoc;
+		};
 		9C4DD3EF1E6D838E00FD4B1D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -695,7 +811,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jiyeon.FastScreenshot-wlb.FastScreenshotWidget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "快截图";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
@@ -712,7 +828,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jiyeon.FastScreenshot-wlb.FastScreenshotWidget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "快截图";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
@@ -804,6 +920,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = FastScreenshot/FastScreenshot.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -826,7 +943,7 @@
 					"$(PROJECT_DIR)/FastScreenshot/UMSocial/UMSocialSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jiyeon.FastScreenshot-wlb";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "快截图";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -835,6 +952,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = FastScreenshot/FastScreenshot.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -857,7 +975,7 @@
 					"$(PROJECT_DIR)/FastScreenshot/UMSocial/UMSocialSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jiyeon.FastScreenshot-wlb";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "快截图";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -918,6 +1036,7 @@
 			buildConfigurations = (
 				9C4DD3EF1E6D838E00FD4B1D /* Debug */,
 				9C4DD3F01E6D838E00FD4B1D /* Release */,
+				9C4862131E7C1128006EDA81 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -927,6 +1046,7 @@
 			buildConfigurations = (
 				9CA627441E6522F60084ED1D /* Debug */,
 				9CA627451E6522F60084ED1D /* Release */,
+				9C48620F1E7C1128006EDA81 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -936,6 +1056,7 @@
 			buildConfigurations = (
 				9CA627471E6522F60084ED1D /* Debug */,
 				9CA627481E6522F60084ED1D /* Release */,
+				9C4862101E7C1128006EDA81 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -945,6 +1066,7 @@
 			buildConfigurations = (
 				9CA6274A1E6522F60084ED1D /* Debug */,
 				9CA6274B1E6522F60084ED1D /* Release */,
+				9C4862111E7C1128006EDA81 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -954,6 +1076,7 @@
 			buildConfigurations = (
 				9CA6274D1E6522F60084ED1D /* Debug */,
 				9CA6274E1E6522F60084ED1D /* Release */,
+				9C4862121E7C1128006EDA81 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
